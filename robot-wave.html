@@ -18,6 +18,8 @@
 
         .container {
             text-align: center;
+            perspective: 1500px;
+            perspective-origin: 50% 50%;
         }
 
         .robot {
@@ -25,12 +27,48 @@
             width: 300px;
             height: 400px;
             margin: 0 auto;
-            animation: bounce 1s ease-in-out infinite;
+            animation: backflip 2.5s ease-in-out infinite;
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+        @keyframes backflip {
+            0% { 
+                transform: translateY(0) translateZ(0) rotateX(0deg) scale(1); 
+            }
+            10% {
+                transform: translateY(-5px) translateZ(5px) rotateX(0deg) scale(1.02);
+            }
+            20% {
+                transform: translateY(-45px) translateZ(25px) rotateX(-25deg) scale(1.08);
+            }
+            30% { 
+                transform: translateY(-95px) translateZ(45px) rotateX(-90deg) scale(1.12); 
+            }
+            40% { 
+                transform: translateY(-130px) translateZ(55px) rotateX(-140deg) scale(1.14); 
+            }
+            50% { 
+                transform: translateY(-145px) translateZ(60px) rotateX(-180deg) scale(1.15); 
+            }
+            60% { 
+                transform: translateY(-130px) translateZ(55px) rotateX(-220deg) scale(1.14); 
+            }
+            70% { 
+                transform: translateY(-95px) translateZ(45px) rotateX(-270deg) scale(1.12); 
+            }
+            80% {
+                transform: translateY(-45px) translateZ(25px) rotateX(-320deg) scale(1.08);
+            }
+            90% {
+                transform: translateY(-10px) translateZ(10px) rotateX(-350deg) scale(1.03);
+            }
+            95% {
+                transform: translateY(-2px) translateZ(2px) rotateX(-358deg) scale(1.01);
+            }
+            100% { 
+                transform: translateY(0) translateZ(0) rotateX(-360deg) scale(1); 
+            }
         }
 
         /* Head */
@@ -43,6 +81,26 @@
             background: #4a90e2;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform-origin: center bottom;
+            animation: head-tilt 2.5s ease-in-out infinite;
+        }
+
+        @keyframes head-tilt {
+            0% { 
+                transform: translateY(0); 
+            }
+            10% {
+                transform: translateY(3px);
+            }
+            20% { 
+                transform: translateY(-2px); 
+            }
+            80% {
+                transform: translateY(2px);
+            }
+            100% { 
+                transform: translateY(0); 
+            }
         }
 
         /* Antenna */
@@ -133,6 +191,29 @@
             background: #5da3f0;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform-origin: center center;
+            animation: body-lean 2.5s ease-in-out infinite;
+        }
+
+        @keyframes body-lean {
+            0% { 
+                transform: scaleY(1); 
+            }
+            10% {
+                transform: scaleY(0.95);
+            }
+            20% { 
+                transform: scaleY(1.05); 
+            }
+            35%, 65% { 
+                transform: scaleY(1); 
+            }
+            80% {
+                transform: scaleY(0.97);
+            }
+            100% { 
+                transform: scaleY(1); 
+            }
         }
 
         /* Control panel */
@@ -186,19 +267,41 @@
             top: 170px;
             left: 15px;
             transform-origin: top center;
+            animation: arm-swing 2.5s ease-in-out infinite;
         }
 
         .arm-right {
             top: 170px;
             right: 15px;
             transform-origin: top center;
-            animation: wave 1s infinite;
+            animation: arm-swing 2.5s ease-in-out infinite;
         }
 
-        @keyframes wave {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-30deg); }
-            75% { transform: rotate(30deg); }
+        @keyframes arm-swing {
+            0% { 
+                transform: rotate(0deg); 
+            }
+            10% {
+                transform: rotate(30deg);
+            }
+            20% {
+                transform: rotate(-45deg);
+            }
+            35% { 
+                transform: rotate(-10deg); 
+            }
+            50% { 
+                transform: rotate(0deg); 
+            }
+            65% { 
+                transform: rotate(10deg); 
+            }
+            85% {
+                transform: rotate(25deg);
+            }
+            100% { 
+                transform: rotate(0deg); 
+            }
         }
 
         /* Hand */
@@ -227,11 +330,45 @@
         .leg-left {
             top: 320px;
             left: 85px;
+            transform-origin: top center;
+            animation: bend-knee 2.5s ease-in-out infinite;
         }
 
         .leg-right {
             top: 320px;
             right: 85px;
+            transform-origin: top center;
+            animation: bend-knee 2.5s ease-in-out infinite;
+        }
+
+        @keyframes bend-knee {
+            0% { 
+                transform: scaleY(1) translateY(0); 
+            }
+            10% {
+                transform: scaleY(0.6) translateY(15px);
+            }
+            20% { 
+                transform: scaleY(1.2) translateY(-8px); 
+            }
+            35% {
+                transform: scaleY(0.75) translateY(5px);
+            }
+            50% { 
+                transform: scaleY(0.8) translateY(3px); 
+            }
+            65% {
+                transform: scaleY(0.9) translateY(0px);
+            }
+            80% {
+                transform: scaleY(0.7) translateY(12px);
+            }
+            90% {
+                transform: scaleY(0.95) translateY(3px);
+            }
+            100% { 
+                transform: scaleY(1) translateY(0); 
+            }
         }
 
         /* Foot */
